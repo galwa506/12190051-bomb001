@@ -60,7 +60,7 @@ Dump of assembler code for function phase_2:
 End of assembler dump.
 
 
-//From line 28, we can figure out that the hidden code is a string as the function says "strings_not_equal".
+//From line 36, we can figure out that the hidden code is an integer as the function says "read six_numbers".
 
 //x command displays the memory contents at a given address using the specified format which in this case is a string.
 //Here, we find the string which is in the esi register that has been moves to address 0x4023d0.
@@ -71,3 +71,5 @@ End of assembler dump.
 //After the hidden string has been discovered we delete all the breakpoint that we have set in the phase_1 as it is no longer required. 
 
 //The hidden string is "The moon unit will be divided into two divisions."
+
+
