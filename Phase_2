@@ -71,11 +71,14 @@ Phase 1 defused. How about the next one?
 //The value of rsp+4 appears to be 1 which is equal to the value 1 and if it wasn't equal then the bomb would have exploded so from here we can conclude that 1 is the correct second integer.
 //The line 46 compares value at eax and 0x8(rbx). The value at eax is 1 whereas the value of 0x8(rbx) is 2 which is not equal(meaning my third given integer is incorrect). 
 //So i again manipulated the value to 1 which is equal to the value at address eax so my third integer is 1.
-//
+//At line 50, i compared value of rbp with the value of rbx. Due to the loop, I re-executed line 46.  Here the eax value was 2 and the value 0x8(rbx) was 3 which is not equal.
+//Therefore i again manipulated the fourth integer to 2 which is eaul to value of eax at line 46, hence it's the correct integer.
+// Till the fourth integer, the value is 0 1 1 2, from which we can make out that it is a fibonacci series. The last two digits are 3 and 5.
+//0 1 1 2 3 5 is the hidden solution.
 
 
 
-//x command displays the memory contents at a given address using the specified format which in this case is a string.
+
 
 
 
