@@ -1,3 +1,40 @@
 Phase_1
 
-The main task here is to find the hidden string 
+//Before diffusing the bomb we need to set a break point at phase1 and at explode bomb function inorder to prevent the explosion of the bomb.
+// We can set the break point with the help of the command either with "b" or "break" 
+
+(gdb) b phase_1
+Breakpoint 1 at 0x400e8d
+(gdb) b explode_bomb
+Breakpoint 2 at 0x40143d
+
+//After setting the break point, we need to check if it's workinig fine.
+//Here, I gave a string "hey" which is not exactly right but just to test if the bereak point is working fine.
+
+(gdb) run
+Starting program: /home/galey/Documents/5 sem/computer System1/labwork/Assignment 1_2/Assignment 1/bomb001/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+hey
+
+Breakpoint 1, 0x0000000000400e8d in phase_1 () //This proves that break point works.
+
+//With the help of command "disas" We will be able to see the assembler code of phase_1 so that we can find the hidden code. 
+
+(gdb) disas
+Dump of assembler code for function phase_1:
+=> 0x0000000000400e8d <+0>:	sub    $0x8,%rsp
+   0x0000000000400e91 <+4>:	mov    $0x4023d0,%esi
+   0x0000000000400e96 <+9>:	call   0x40133e <strings_not_equal>
+   0x0000000000400e9b <+14>:	test   %eax,%eax
+   0x0000000000400e9d <+16>:	je     0x400ea4 <phase_1+23>
+   0x0000000000400e9f <+18>:	call   0x40143d <explode_bomb>
+   0x0000000000400ea4 <+23>:	add    $0x8,%rsp
+   0x0000000000400ea8 <+27>:	ret    
+End of assembler dump.
+
+
+
+
+
+ 
