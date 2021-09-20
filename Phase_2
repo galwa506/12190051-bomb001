@@ -62,14 +62,25 @@ End of assembler dump.
 
 //From line 36, we can figure out that the hidden code is an integer as the function says "read six_numbers".
 
+Phase 1 defused. How about the next one?
+0 1 2 3 4 5
+//Here, I gave the above integers as the six numbers.
+//I then directly jumped to line 37 to compare my first integer with the the number that is stored in the address 0x0 which is 0.
+//Since 0==0, my first integer which is 0 is the correct integer. 
+//After that, I traced the code of line 39, that compares 1 with the value of rsp+4.
+//The value of rsp+4 appears to be 1 which is equal to the value 1 and if it wasn't equal then the bomb would have exploded so from here we can conclude that 1 is the correct second integer.
+//The line 46 compares value at eax and 0x8(rbx). The value at eax is 1 whereas the value of 0x8(rbx) is 2 which is not equal(meaning my third given integer is incorrect). 
+//So i again manipulated the value to 1 which is equal to the value at address eax so my third integer is 1.
+//
+
+
+
 //x command displays the memory contents at a given address using the specified format which in this case is a string.
-//Here, we find the string which is in the esi register that has been moves to address 0x4023d0.
-//So, we can conclude that the following string is the string we are looking for. 
-(gdb) x/s 0x4023d0
-0x4023d0:	"The moon unit will be divided into two divisions."
 
-//After the hidden string has been discovered we delete all the breakpoint that we have set in the phase_1 as it is no longer required. 
 
-//The hidden string is "The moon unit will be divided into two divisions."
+
+
+
+
 
 
