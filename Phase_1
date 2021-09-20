@@ -23,7 +23,7 @@ Breakpoint 1, 0x0000000000400e8d in phase_1 () //This proves that break point wo
 
 (gdb) disas
 Dump of assembler code for function phase_1:
-=> 0x0000000000400e8d <+0>:	sub    $0x8,%rsp
+=> 0x0000000000400e8d <+0>:	sub    $0x8,%rsp  //we can ignore operation such as subtraction/addition as the only purpose here is to find the hidden string
    0x0000000000400e91 <+4>:	mov    $0x4023d0,%esi
    0x0000000000400e96 <+9>:	call   0x40133e <strings_not_equal>
    0x0000000000400e9b <+14>:	test   %eax,%eax
@@ -32,6 +32,19 @@ Dump of assembler code for function phase_1:
    0x0000000000400ea4 <+23>:	add    $0x8,%rsp
    0x0000000000400ea8 <+27>:	ret    
 End of assembler dump.
+
+//From line 28, we can figure out that the hidden code is a string as the function says "strings_not_equal".
+
+//x command displays the memory contents at a given address using the specified format which in this case is a string.
+//Here, we find the string which is in the esi register that has been moves to address 0x4023d0.
+//So, we can conclude that the following string is the string we are looking for. 
+(gdb) x/s 0x4023d0
+0x4023d0:	"The moon unit will be divided into two divisions."
+
+//After the hidden string has been discovered we delete all the breakpoint that we have set in the phase_1 as it is no longer required. 
+
+//The hidden string is "The moon unit will be divided into two divisions."
+
 
 
 
