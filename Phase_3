@@ -64,7 +64,7 @@ Dump of assembler code for function phase_3:
    0x0000000000400fa4 <+143>:	jmp    0x400fb0 <phase_3+155>
    0x0000000000400fa6 <+145>:	call   0x40143d <explode_bomb>
    0x0000000000400fab <+150>:	mov    $0x0,%eax
-   0x0000000000400fb0 <+155>:	cmpl   $0x5,(%rsp)
+   0x0000000000400fb0 <+155>:	cmpl   $ 0x5,(%rsp)
    0x0000000000400fb4 <+159>:	jg     0x400fbc <phase_3+167>
    0x0000000000400fb6 <+161>:	cmp    0x4(%rsp),%eax
    0x0000000000400fba <+165>:	je     0x400fc1 <phase_3+172>
@@ -78,4 +78,21 @@ Dump of assembler code for function phase_3:
 End of assembler dump.
 
 
-//
+//To get what the hidden code is I checked what is there in the line 33 in the address 0x4025cf and from there I got a hint that the hidden code takes input of two integers.
+//line 35-I compared 1 with the eax value which is 2. 
+//line 36 - Since the value of eax is greater than 1, jump to line 38.
+//line 38 - Compares value 7 with the value at address rsp which is 1.
+//Since 1 is not above 7, execute the line below ja in the given sequence.
+//line 67- Compare value 5 with the value at address rsp which is 1. 
+//If the value 1 was greater than 5, then the bomb would have exploded but it isn't. So we get the first hidden integer that is 1.
+//line 69 - we compare the the value at address(4+rsp) which is 2 and the value at address at eax which is 276.
+//Since it is not equal the bomb will explode. Therefore we again need to manipulate the value of second hidden integer.
+//If we make second hidden integer equal to the value at address eax which is 276 then the bomb wouldn't explode.
+Hence we get the two hidden integers. 
+
+// 1 and 276 are the hidden integers. 
+
+
+
+
+
